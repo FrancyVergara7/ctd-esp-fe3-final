@@ -1,17 +1,21 @@
 import React from "react";
-import Card from "../Components/Card";
-
-//Este componente debera ser estilado como "dark" o "light" dependiendo del theme del Context
+import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
+import Card from '../Components/Card'
 
 const Favs = () => {
+  const favs = JSON.parse(localStorage.getItem('favs')) || [];
 
   return (
     <>
+      <Navbar />
       <h1>Dentists Favs</h1>
       <div className="card-grid">
-        {/* este componente debe consumir los destacados del localStorage */}
-        {/* Deberan renderizar una Card por cada uno de ellos */}
+        {favs.map((fav) => (
+          <Card key={fav.id} id={fav.id} name={fav.name} username={fav.username} />
+        ))}
       </div>
+      <Footer />
     </>
   );
 };
